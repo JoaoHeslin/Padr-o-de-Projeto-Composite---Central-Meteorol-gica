@@ -1,0 +1,25 @@
+package CentralMeteorologica;
+
+import java.util.ArrayList;
+import java.util.List;
+public class EstacaoMeteorologica {
+    private List<CentralMeteorologicaListener> previsoes;
+    public EstacaoMeteorologica(CentralMeteorologicaListener centralMeteorologica) {
+       this.previsoes = new ArrayList<>();
+    }
+
+    public void novaMedicaoTemperatura(Dados dados, double temperatura) {
+        // Aqui vamos simular um evento de nova medição de temperatura
+        CentralEvent event = new CentralEvent(this, dados);
+        for (CentralMeteorologicaListener central:this.previsoes){
+            central.previsão(event, temperatura);
+        }
+    }
+    public void novaMedicaoPressao(Dados dados, double pressao) {
+        // Aqui vamos simular um evento de nova medição de pressão
+        CentralEvent event = new CentralEvent(this, dados);
+        for (CentralMeteorologicaListener central:this.previsoes){
+            central.previsão(event, pressao);
+        }
+    }
+}
